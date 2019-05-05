@@ -1,0 +1,14 @@
+[
+  {
+    "endpoint": "https://api.eu-gb.bluemix.net",
+    "user": "amichal2@outlook.com",
+    "org": "amichal2@outlook.com",
+    "space": "dev"
+  },
+  {
+    "endpoint": "https://api.eu-gb.bluemix.net",
+    "user": "amichal2@yahoo.co.uk",
+    "org": "amichal2",
+    "space": "dev"
+  }
+]
