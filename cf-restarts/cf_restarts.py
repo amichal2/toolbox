@@ -26,7 +26,7 @@ def login(account, password):
         print("other error", err)
 
 
-def get_stopped_apps():
+def get_stopped_apps(user):
     result = None
     try:
         result = subprocess.run(['cf', 'apps'], check=True, stdout=subprocess.PIPE).stdout.decode("utf-8")
@@ -43,7 +43,7 @@ def get_stopped_apps():
         application = re.compile(r"\s+").split(line)
         application_name = application[0]
         status = application[1]
-        print("app name: " + application_name + "   status: " + status)
+        print("user: " + user + " app name: " + application_name + "   status: " + status)
         if status == 'stopped':
             app_names.append(application_name)
 
@@ -58,7 +58,7 @@ def restart_apps(app_names):
 
 if __name__ == '__main__':
 
-    password = getpass.getpass('Input password> ')
+    password = getpass.getpass('Input password: ')
 
     with open('cf_accounts.json') as accounts_file:
         accounts = json.load(accounts_file)
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     for account in accounts:
         logout()
         login(account, password)
-        restart_apps(get_stopped_apps())
+        restart_apps(get_stopped_apps(account['user']))
 
     logout()
 
