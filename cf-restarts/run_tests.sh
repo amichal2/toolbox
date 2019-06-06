@@ -10,4 +10,4 @@ ENV_NAME="venv"
 ${ENV_NAME}/bin/pip3 install --upgrade pip
 ${ENV_NAME}/bin/pip3 install -r requirements.txt
 
-${ENV_NAME}/bin/python3 cf_restarts.py
+${ENV_NAME}/bin/pytest cf_restarts.py

@@ -77,10 +77,10 @@ if __name__ == '__main__':
 def test_get_stopped_apps():
     subprocess.run = mock.MagicMock(return_value=CompletedProcess("", 0, b"Getting apps in org orgname / space dev as user@username...\nOK\n\nname    requested state   instances   memory   disk   urls\napp1   stopped           1/1         256M     1G     app1.eu-gb.mybluemix.net\napp2   started           1/1         256M     1G     app2.eu-gb.mybluemix.net\napp3   stopped           1/1         256M     1G     app3.eu-gb.mybluemix.net\n", None))
 
-    assert get_stopped_apps() == ['app1', 'app3']
+    assert get_stopped_apps('user') == ['app1', 'app3']
 
 
 def test_get_stopped_apps_no_stopped_apps():
     subprocess.run = mock.MagicMock(return_value=CompletedProcess("", 0, b"Getting apps in org orgname / space dev as user@username...\nOK\n\nname    requested state   instances   memory   disk   urls\napp1   started           1/1         256M     1G     app1.eu-gb.mybluemix.net\n", None))
 
-    assert get_stopped_apps() == []
+    assert get_stopped_apps('user') == []
